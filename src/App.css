@@ -1,0 +1,66 @@
+form {
+    width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Input, select e textarea */
+input,
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Quando clicchi dentro un campo */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #646cff;
+    box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.15);
+}
+
+/* Textarea */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Messaggi di validazione */
+p {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+/* Bottone */
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #646cff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #535bf2;
+}
+
+button:active {
+    transform: scale(0.98);
+}

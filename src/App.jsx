@@ -1,15 +1,18 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 
 function App() {
+
+  console.log('render')
+
   const [fullName, setFullName] = useState('');
-  const [userName, setUserName] = useState('');
+  const usernameRef = useRef();
   const [password, setPassword] = useState('');
   const [specializzazione, setSpecializzazione] = useState('');
-  const [yearOfExperience, setYearOfExperience] = useState(0);
+  const yearOfExperience = useRef();
   const [description, setDescription] = useState('');
 
 
@@ -17,14 +20,14 @@ function App() {
     event.preventDefault();
     if (
       fullName.trim() === '' ||
-      userName.trim() === '' ||
+      usernameRef.current.value.trim() === '' ||
       description.trim() === ''
     ) {
       console.log('il nome,username o descrizione non può essere vuoto')
       return;
     }
 
-    if (yearOfExperience < 0) {
+    if (yearOfExperience.current.value < 0) {
       console.log('per gli anni di esperienza il numero non può essere negativo')
       return;
     }
@@ -33,10 +36,11 @@ function App() {
       return;
     }
 
-    console.log
-      (`il nome è ${fullName}, con username:${userName}, 
-      la sua specializzazione è ${specializzazione},con ${yearOfExperience} 
-      anni di esperienza, descrizione:${description}`)
+    console.log(`
+      il nome è ${fullName}, con username:${usernameRef.current.value}, 
+      la sua specializzazione è ${specializzazione},con ${yearOfExperience.current.value} 
+      anni di esperienza, descrizione:${description}
+      `)
   }
 
   const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -49,6 +53,7 @@ function App() {
       <div>
         <form onSubmit={handleSubmit}>
           <input
+            placeholder='inserisci il tuo nome completo'
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             type="text" />
@@ -57,10 +62,11 @@ function App() {
               symbols.includes(char) ||
               symbol.includes(char)) ? <p>non valido</p> : <p>valido</p>}
           <input
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            placeholder='inserisci username'
+            ref={usernameRef}
             type="text" />
           <input
+            placeholder='inserisci password'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -80,11 +86,12 @@ function App() {
             <option value="frontend">Frontend</option>
             <option value="backend">Backend</option>
           </select>
+          <h3>anni esperienza</h3>
           <input
-            value={yearOfExperience}
-            onChange={(e) => setYearOfExperience(e.target.value)}
+            ref={yearOfExperience}
             type="number" />
           <textarea
+            placeholder='aggiungi una descrizione'
             value={description}
             onChange={(e) => setDescription(e.target.value)} >
           </textarea>
